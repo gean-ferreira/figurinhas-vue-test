@@ -46,6 +46,7 @@ export default {
           </span>
           <span> Quantidade: {{ item.count }} </span>
           <span v-if="item.observation"> Observações: {{ item.observation }} </span>
+          <span > Total: {{ item.total }} </span>
         </div>
         <div class="right-wish--container">
           <div>
