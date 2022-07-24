@@ -91,21 +91,17 @@ export default {
 
 <style scoped>
 #form {
-  background-color: white;
-  width: 100%;
-  border-radius: 5px;
-  min-height: 400px;
-}
-
-form {
   display: flex;
   flex-direction: column;
-  /* padding: 0 20px; */
 }
 
-form h3,
-.group-btn-form--container,.total-request {
+#form h3,
+.group-btn-form--container {
   margin-bottom: 16px;
+}
+
+.group-btn-form--container span {
+  margin: 0 30px;
 }
 
 .figurines-types--container {
@@ -114,24 +110,11 @@ form h3,
   margin-bottom: 16px;
 }
 
-.group-btn-form--container button {
-  width: 30px;
-  height: 30px;
-}
-.group-btn-form--container span {
-  margin: 0 30px;
-}
-
-.total-request{
-
-}
-
-form input {
+#form input {
   margin: 8px 0;
 }
 
-.btn-handleSubmit-product{
+.btn-handleSubmit-product {
   margin-top: 2rem;
 }
-
 </style>
