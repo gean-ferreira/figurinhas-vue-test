@@ -1,5 +1,5 @@
 <script>
-import router from "../router";
+import mask from '@/assets/scripts/masks'
 
 export default {
   data() {
@@ -21,13 +21,11 @@ export default {
     isHandleSubmitButtonDisabled() {
       return this.count < 1 || this.figure.length < 1 ? true : false;
     },
-      count: 0, //quantidade de figurinhas marcadas
-      figure: [], //produtos/figurinhas marcadas no formulario serao setados dentro do array
-      total: function () {
-        //retorna o total da compra
-        //Retorna apenas dois decimais
-        return (this.count * 3.99 * this.figure.length).toFixed(2);
-      },
+    // retorna o total da compra
+    // Retorna apenas dois decimais
+    total() {
+      return mask.convertToReal((this.count * 3.99 * this.figure.length).toFixed(2));
+    },
     handleSubmit() {
       // armazena cada pedido no localstorage
       // a variavel figurines sempre retornara em array
