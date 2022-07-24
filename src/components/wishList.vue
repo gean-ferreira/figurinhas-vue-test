@@ -4,10 +4,13 @@ import stringManipulation from '@/assets/scripts/string'
 export default {
   data() {
     return {
+      // Verifica pedido no localstorage
       wishList: JSON.parse(localStorage.getItem("figurines")),
+      // Retorna valor booleano da lista de pedidos
       hasWishList: function () {
         return this.wishList !== null && this.wishList.length >= 1;
       },
+      // Funcao de manipulacao de string: coloca no plural
       pluralWord: stringManipulation.pluralWord
     };
       },
