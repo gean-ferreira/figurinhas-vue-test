@@ -1,5 +1,6 @@
 <script>
-import router from "../router";
+import stringManipulation from '@/assets/scripts/string'
+
 export default {
   data() {
     return {
@@ -7,8 +8,8 @@ export default {
       hasWishList: function () {
         return this.wishList !== null && this.wishList.length >= 1;
       },
-      keyTitles: function (count) {
-        return count > 1 ? "Figurinhas" : "Figurinha";
+      pluralWord: stringManipulation.pluralWord
+    };
       },
       handleDelete: function (e) {
         const arr = JSON.parse(localStorage.getItem("figurines"));
@@ -42,7 +43,7 @@ export default {
       <li v-for="item in wishList">
         <div class="left-wish--container">
           <span>
-            {{ `${keyTitles(item.count)}: ${item.figure}` }}
+            {{ `${pluralWord(item.figure.length, 'Figurinha')}: ${item.figure}` }}
           </span>
           <span> Quantidade: {{ item.count }} </span>
           <span v-if="item.observation"> Observações: {{ item.observation }} </span>
