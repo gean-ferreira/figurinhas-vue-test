@@ -4,6 +4,23 @@ import router from "../router";
 export default {
   data() {
     return {
+      count: 0, // quantidade de figurinhas marcadas
+      figure: [], // produtos/figurinhas marcadas no formulario serao setados dentro do array
+      observation: "", // observacoes do pedido
+    };
+  },
+  methods: {
+    // events counter
+    increment() { this.count++ },
+    decrement() { this.count-- },
+    // botão para diminuir apenas é ativado quando for maior que 1
+    isCountButtonDisabled() {
+      return this.count < 1 ? true : false;
+    },
+    // o botão enviar é ativado quando tem alguma figurinha marcada e a quantidade for mais que 1
+    isHandleSubmitButtonDisabled() {
+      return this.count < 1 || this.figure.length < 1 ? true : false;
+    },
       count: 0, //quantidade de figurinhas marcadas
       figure: [], //produtos/figurinhas marcadas no formulario serao setados dentro do array
       total: function () {
@@ -11,39 +28,25 @@ export default {
         //Retorna apenas dois decimais
         return (this.count * 3.99 * this.figure.length).toFixed(2);
       },
-      observation: "", //observacoes do pedido
+    handleSubmit() {
+      // armazena cada pedido no localstorage
+      // a variavel figurines sempre retornara em array
+      const figurines = JSON.parse(localStorage.getItem("figurines") || "[]");
 
-      handleSubmit: function (e) {
-        //armazena cada pedido no localstorage
-        e.preventDefault();
+      // anexa novo pedido ao array
+      figurines.push({
+        id: Date.now(),
+        figure: this.figure,
+        count: this.count,
+        total: this.total(),
+        observation: this.observation,
+      });
 
-        //a variavel figurines sempre retornara em array
-        const figurines = JSON.parse(localStorage.getItem("figurines") || "[]");
-
-        //anexa novo pedido ao array
-        figurines.push({
-          id: Date.now(),
-          figure: this.figure,
-          count: this.count,
-          total: this.total(),
-          observation: this.observation,
-        });
-
-        localStorage.setItem("figurines", JSON.stringify(figurines));
-        router.replace({ path: "/carrinho" });
-      },
-
-      // btnDisabled: this.count ,
-      isCountButtonDisabled: function () {
-        // botão para diminuir apenas é ativado quando for maior que 1
-        return this.count < 1 ? true : false;
-      },
-      isHandleSubmitButtonDisabled: function () {
-        // o botão enviar é ativado quando tem alguma figurinha marcada e a quantidade for mais que 1
-        return this.count < 1 || this.figure.length < 1 ? true : false;
-      },
-    };
-  },
+      localStorage.setItem("figurines", JSON.stringify(figurines));
+      // navega para o carrinho
+      this.$router.push({ path: "/carrinho" });
+    },
+  }
 };
 </script>
 
