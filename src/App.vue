@@ -1,9 +1,8 @@
 <script setup>
-import { RouterLink, RouterView } from "vue-router";
+import Navbar from "@/components/navbar.vue";
 </script>
 
 <template>
-  <img class="app-img" src="../src/assets/img/wave.svg" alt="imagem de fundo" />
-
+    <Navbar />
     <RouterView />
 </template>
