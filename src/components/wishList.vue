@@ -13,27 +13,27 @@ export default {
       // Funcao de manipulacao de string: coloca no plural
       pluralWord: stringManipulation.pluralWord
     };
-      },
+  },
   methods: {
     goToProducts() {
       this.$router.push("/");
     },
     // Deleta um pedido
     handleDelete(e) {
-        const arr = JSON.parse(localStorage.getItem("figurines"));
-        let index = null;
+      const arr = JSON.parse(localStorage.getItem("figurines"));
+      let index = null;
 
-        for (const key in this.wishList) {
-          const hasIdWish =
-            e.target.value.toString() === this.wishList[key].id.toString();
-          if (hasIdWish) {
-            index = key;
-          }
+      for (const key in this.wishList) {
+        const hasIdWish =
+          e.target.value.toString() === this.wishList[key].id.toString();
+        if (hasIdWish) {
+          index = key;
         }
-        arr.splice(index, 1);
-        localStorage.setItem("figurines", JSON.stringify(arr));
-        this.wishList = JSON.parse(localStorage.getItem("figurines"));
-      },
+      }
+      arr.splice(index, 1);
+      localStorage.setItem("figurines", JSON.stringify(arr));
+      this.wishList = JSON.parse(localStorage.getItem("figurines"));
+    },
   },
 };
 </script>
