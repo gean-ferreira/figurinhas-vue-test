@@ -66,6 +66,8 @@ export default {
 </template>
 
 <style scoped>
+@import "../assets/base.css";
+
 #wish--container {
   padding: 0;
 }
@@ -74,15 +76,18 @@ export default {
   list-style: none;
   padding: 8px;
   margin: 10px 0;
-  border: 2px solid #2c2079;
+  border: 2px solid var(--primary);
   border-radius: 5px;
   display: flex;
   justify-content: space-between;
   gap: 32px;
 }
+
 .left-wish--container {
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+  word-wrap: break-word;
 }
 
 .right-wish--container {
