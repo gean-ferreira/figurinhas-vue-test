@@ -14,10 +14,3 @@ import ProductForm from "@/components/productForm.vue";
     <ProductForm />
   </main>
 </template>
-
-<style scoped>
-
-
-
-
-</style>
