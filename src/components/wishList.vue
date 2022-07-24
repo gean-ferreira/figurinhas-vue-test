@@ -11,7 +11,12 @@ export default {
       pluralWord: stringManipulation.pluralWord
     };
       },
-      handleDelete: function (e) {
+  methods: {
+    goToProducts() {
+      this.$router.push("/");
+    },
+    // Deleta um pedido
+    handleDelete(e) {
         const arr = JSON.parse(localStorage.getItem("figurines"));
         let index = null;
 
@@ -26,19 +31,13 @@ export default {
         localStorage.setItem("figurines", JSON.stringify(arr));
         this.wishList = JSON.parse(localStorage.getItem("figurines"));
       },
-    };
-  },
-  methods: {
-    goToProducts() {
-      this.$router.push("/");
-    },
   },
 };
 </script>
 
 <template>
   <section v-if="hasWishList()">
-    <button v-on:click="goToProducts">Comprar mais figurinhas</button>
+    <button @click="goToProducts">Comprar mais figurinhas</button>
     <ul id="wish--container">
       <li v-for="item in wishList">
         <div class="left-wish--container">
@@ -47,11 +46,11 @@ export default {
           </span>
           <span> Quantidade: {{ item.count }} </span>
           <span v-if="item.observation"> Observações: {{ item.observation }} </span>
-          <span > Total: {{ item.total }} </span>
+          <span> Total: {{ item.total }} </span>
         </div>
         <div class="right-wish--container">
           <div>
-            <button v-on:click="handleDelete($event)" :value="item.id">
+            <button @click="handleDelete($event)" :value="item.id">
               Deletar
             </button>
           </div>
@@ -62,7 +61,7 @@ export default {
   <!-- Caso o carrinho esteja vazio -->
   <div v-else="" class="empty-cart--container">
     <div>Carrinho vazio</div>
-    <button v-on:click="goToProducts">Comprar figurinhas</button>
+    <button @click="goToProducts">Comprar figurinhas</button>
   </div>
 </template>
 
