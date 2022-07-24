@@ -49,59 +49,44 @@ export default {
 </script>
 
 <template>
-  <div id="form">
-    <form @submit="handleSubmit">
-      <h3 class="title-bold">Quais adesivos:</h3>
-      <div class="figurines-types--container">
-        <label for="figure">
-          <input v-model="figure" type="checkbox" name="figure" value="react" />
-          React
-        </label>
-        <label for="figure">
-          <input v-model="figure" type="checkbox" name="figure" value="Vue" />
-          Vue
-        </label>
-        <label for="figure">
-          <input
-            v-model="figure"
-            type="checkbox"
-            name="figure"
-            value="Angular"
-          />
-          Angular
-        </label>
+  <form id="form" @submit.prevent="handleSubmit">
+    <h3 class="title-bold">Quais adesivos:</h3>
+    <div class="figurines-types--container">
+      <label for="figure">
+        <input v-model="figure" type="checkbox" name="figure" value="react" />
+        React
+      </label>
+      <label for="figure">
+        <input v-model="figure" type="checkbox" name="figure" value="Vue" />
+        Vue
+      </label>
+      <label for="figure">
+        <input v-model="figure" type="checkbox" name="figure" value="Angular" />
+        Angular
+      </label>
+    </div>
+    <div>
+      <h3 class="title-bold">Quantos adesivos de cada?</h3>
+
+      <div class="group-btn-form--container">
+        <button type="button" @click="decrement" :disabled="isCountButtonDisabled()">
+          -
+        </button>
+        <span>{{ count }}</span>
+        <button type="button" @click="increment">+</button>
       </div>
-      <div>
-        <h3 class="title-bold">Quantos adesivos de cada?</h3>
+    </div>
 
-        <div class="group-btn-form--container">
-          <button
-            type="button"
-            @click="count--"
-            v-bind:disabled="isCountButtonDisabled()"
-          >
-            -
-          </button>
-          <span>{{ count }}</span>
-          <button type="button" @click="count++">+</button>
-        </div>
-      </div>
+    <h3 class="title-bold">Total: <span>{{ total() }}</span></h3>
 
-      <h3 class="title-bold total-request">Total: <span>{{ total() }}</span></h3> 
+    <h3 class="title-bold">Observações:</h3>
 
-      <h3 class="title-bold">Observações:</h3>
+    <textarea v-model="observation" name="observation" placeholder="Alguma dúvida? Recado?"></textarea>
 
-      <textarea
-        v-model="observation"
-        name="mensagem"
-        placeholder="Alguma dúvida? Recado?"
-      ></textarea>
-
-      <button  class="btn-handleSubmit-product" type="submit" v-bind:disabled="isHandleSubmitButtonDisabled()">
-        Enviar
-      </button>
-    </form>
-  </div>
+    <button class="btn-handleSubmit-product" type="submit" :disabled="isHandleSubmitButtonDisabled()">
+      Enviar
+    </button>
+  </form>
 </template>
 
 <style scoped>
